@@ -13,7 +13,7 @@
  * Example of usage of this higher-order function:
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
-*/
+ */
 function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
@@ -28,11 +28,17 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * counter2 will reset to 0 each time the function is called. counter1 will increment count each time the function is called.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
+ * 
+ * counter1 uses a closure because the nested funcion 'counter' is referencing the variable 'count' from the higher order function 'counterMaker'.
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
-*/
+ * counter1 code is preferable if you need to keep track and increment. counter2 is better if you just need to count up once then start back at zero.
+ * 
+ */
 
 // counter1 code
 function counterMaker() {
@@ -56,11 +62,15 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(team) {
+  return function () {
+    const rndm = Math.floor(Math.random() * 3);
+    console.log(`Team ${team} scored ${rndm} points this inning!`);
+  };
 }
+
+const teamPaco = inning('Paco');
+teamPaco();
 
 /* Task 3: finalScore()
 
@@ -74,9 +84,9 @@ finalScore(inning, 9) might return:
   "Away": 5,
 }
 
-*/ 
+*/
 
-function finalScore(/*code Here*/){
+function finalScore( /*code Here*/ ) {
 
   /*Code Here*/
 
@@ -104,8 +114,6 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard( /* CODE HERE */ ) {
   /* CODE HERE */
 }
-
-
