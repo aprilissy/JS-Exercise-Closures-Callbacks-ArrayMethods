@@ -80,18 +80,19 @@ finalScore(inning, 9) might return:
 
 */
 
-function finalScore(cb, numInnings) {
-  for (let i = 0; i <= numInnings; i++) {
-
+function finalScore(cbInning, numInnings) {
+  let home = 0;
+  let away = 0;
+  for (let i = 0; i < numInnings; i++) {
+    home = home + cbInning();
+    away = away + cbInning();
   }
-  let score = {
-    Home: cb,
-    Away: cb
-  };
   return {
-    score
+    Home: home,
+    Away: away
   };
 }
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
@@ -114,7 +115,20 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 
 Final Score: awayTeam - homeTeam */
-
-function scoreboard( /* CODE HERE */ ) {
-  /* CODE HERE */
+function getInningScore(inning) {
+  home = inning();
+  away = inning();
+  return `${home} - ${away}`;
 }
+
+function scoreboard(cbScore, numInnings) {
+  let home = 0;
+  let away = 0;
+  let inningNum = 0;
+  for (let i = 0; i < numInnings; i++) {
+    inningNum++;
+    console.log(`Inning Number ${inningNum}: getInningScore()`);
+  }
+  return `Final Score: ${home} - ${away}`;
+}
+scoreboard(getInningScore(inning()), 9);
