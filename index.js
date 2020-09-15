@@ -28,13 +28,15 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
- * counter2 will reset to 0 each time the function is called. counter1 will increment count each time the function is called.
+ * counter2 will reset to 0 each time the function is called. counter1 will increment count each time the function is called. counter 1 has count in the local scope and counter2 has count in the global scope. counter2 can cause bugs later on if you change let count then it can break your function.
  * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
  * counter1 uses a closure because the nested funcion 'counter' is referencing the variable 'count' from the higher order function 'counterMaker'.
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * counter 1 is better if you don't want to potentially blow up your function later on. In counter2 if you change let count your function breaks 
  *
  * counter1 code is preferable if you need to keep track and increment. counter2 is better if you just need to count up once then start back at zero.
  * 
@@ -84,12 +86,12 @@ function finalScore(cbInning, numInnings) {
   let home = 0;
   let away = 0;
   for (let i = 0; i < numInnings; i++) {
-    home = home + cbInning();
-    away = away + cbInning();
+    home += cbInning(); //This is a shorthand way to write the next line
+    away = away + cbInning(); //This is a longhand way to write the previous line
   }
   return {
-    Home: home,
-    Away: away
+    Home = home,
+    Away = away
   };
 }
 console.log(finalScore(inning, 9));
@@ -116,18 +118,18 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 function getInningScore(inning) {
-  home = inning();
-  away = inning();
+  let home = inning();
+  let away = inning();
   return `${home} - ${away}`;
 }
 
-function scoreboard(cbScore, numInnings) {
+function scoreboard(cbScore, inning, numInnings) {
   let home = 0;
   let away = 0;
   let inningNum = 0;
   for (let i = 0; i < numInnings; i++) {
     inningNum++;
-    console.log(`Inning Number ${inningNum}: getInningScore()`);
+    console.log(`Inning Number ${inningNum}: ${cbScore()}`);
   }
   return `Final Score: ${home} - ${away}`;
 }

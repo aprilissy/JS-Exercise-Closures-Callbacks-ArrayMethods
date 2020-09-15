@@ -43,7 +43,7 @@ Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
 
-Closure allows nested functions to have access to the parent function, even if the parent function has closed (return).
+Closure allows nested functions to have access to the higher order function, even if the parent function has closed (return).
 
 2. Study the following code, then answer the questions below.
 
