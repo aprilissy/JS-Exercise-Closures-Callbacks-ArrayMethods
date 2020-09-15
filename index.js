@@ -2,44 +2,43 @@
 
 /**
  * ### Challenge `processFirstItem`
- * 
+ *
  * @instructions
  * Implement a higher-order function called `processFirstItem`.
  * It takes two arguments:
  * @param stringList an array of strings.
  * @param callback function that takes a string as its argument.
  * @returns the result of invoking `callback` with the FIRST element in `stringList`.
- * 
+ *
  * Example of usage of this higher-order function:
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
  */
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
 
 // ⭐️ Example Challenge END ⭐️
-
 
 ///// M V P ///////
 
 /* Task 1: `counterMaker`
  * Study the code for counter1 and counter2. Answer the questions below.
- * 
+ *
  * 1. What is the difference between counter1 and counter2?
- * 
- * counter2 will reset to 0 each time the function is called. counter1 will increment count each time the function is called. counter 1 has count in the local scope and counter2 has count in the global scope. counter2 can cause bugs later on if you change let count then it can break your function.
- * 
+ *
+ * counter2 will reset to 0 each time the function is called. counter1 will increment count each time the function is called. counter 1 has count in the local scope and counter2 has count in the global scope. counter2 can cause bugs later on if you change 'let count' then it can break your function.
+ *
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ *
  * counter1 uses a closure because the nested funcion 'counter' is referencing the variable 'count' from the higher order function 'counterMaker'.
- * 
- * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- * 
- * counter 1 is better if you don't want to potentially blow up your function later on. In counter2 if you change let count your function breaks 
+ *
+ * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
+ *
+ * counter 1 is better if you don't want to potentially blow up your function later on. In counter2 if you change 'let count' your function breaks
  *
  * counter1 code is preferable if you need to keep track and increment. counter2 is better if you just need to count up once then start back at zero.
- * 
+ *
  */
 
 // counter1 code
@@ -47,7 +46,7 @@ function counterMaker() {
   let count = 0;
   return function counter() {
     count++;
-  }
+  };
 }
 
 const counter1 = counterMaker();
@@ -58,7 +57,6 @@ let count = 0;
 function counter2() {
   return count++;
 }
-
 
 /* Task 2: inning() 
 
@@ -88,10 +86,10 @@ function finalScore(cbInning, numInnings) {
   for (let i = 0; i < numInnings; i++) {
     home = home + cbInning();
     away = away + cbInning();
-  };
+  }
   let final = {
     Home: home,
-    Away: away
+    Away: away,
   };
   return final;
 }
@@ -130,6 +128,6 @@ function scoreboard(cbScore, cbinning, numInnings) {
     away = away + inning.Away;
 
     console.log(`${loop + 1}th Inning: ${away} - ${home}`);
-  };
+  }
 }
 scoreboard(finalScore, inning, 10);

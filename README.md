@@ -43,7 +43,7 @@ Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
 
-Closure allows nested functions to have access to the higher order function, even if the parent function has closed (return).
+Closure allows nested functions to have access to the information in a parent function (gives access to the parent scope), even if the parent function has closed.
 
 2. Study the following code, then answer the questions below.
 
@@ -67,7 +67,7 @@ dansRoll();
 a. Where is closure used in this code? How can you tell?
 
 Closure is used on the parent to pass variable info to the nested child.
-newRoll references 'name' which is a parameter of personalDice.
+newRoll(inside nested funcion) references 'name' which is a parameter of personalDice(parent funcion).
 
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
 
@@ -75,7 +75,7 @@ The text of the string stays the same with the exception of the number rolled wh
 
 c. What is the lexical scope of `newRoll`?
 
-newRoll has access to newRoll, personalDice, and global/window. You can pass things in, but not up.
+newRoll has access to newRoll, personalDice, and global/window. You can pass things into newRoll, but not up to personalDice or the global scope from newRoll.
 
 ### Task 3 - Stretch Goals
 
