@@ -86,13 +86,14 @@ function finalScore(cbInning, numInnings) {
   let home = 0;
   let away = 0;
   for (let i = 0; i < numInnings; i++) {
-    home += cbInning(); //This is a shorthand way to write the next line
-    away = away + cbInning(); //This is a longhand way to write the previous line
-  }
-  return {
-    Home = home,
-    Away = away
+    home = home + cbInning();
+    away = away + cbInning();
   };
+  let final = {
+    Home: home,
+    Away: away
+  };
+  return final;
 }
 console.log(finalScore(inning, 9));
 
@@ -117,20 +118,18 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 
 Final Score: awayTeam - homeTeam */
-function getInningScore(inning) {
-  let home = inning();
-  let away = inning();
-  return `${home} - ${away}`;
-}
 
-function scoreboard(cbScore, inning, numInnings) {
+function scoreboard(cbScore, cbinning, numInnings) {
   let home = 0;
   let away = 0;
-  let inningNum = 0;
-  for (let i = 0; i < numInnings; i++) {
-    inningNum++;
-    console.log(`Inning Number ${inningNum}: ${cbScore()}`);
-  }
-  return `Final Score: ${home} - ${away}`;
+
+  for (let loop = 0; loop < numInnings; loop++) {
+    let inning = cbScore(cbinning, 1);
+
+    home = home + inning.Home;
+    away = away + inning.Away;
+
+    console.log(`${loop + 1}th Inning: ${away} - ${home}`);
+  };
 }
-scoreboard(getInningScore(inning()), 9);
+scoreboard(finalScore, inning, 10);
