@@ -66,6 +66,14 @@ function inning() {
   return Math.floor(Math.random() * 3);
 }
 
+// ************* Britt's answer ****************
+// function inning() {
+//   return Math.floor(Math.random * Math.floor(3));
+// }
+
+
+
+
 /* Task 3: finalScore()
 
 Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
@@ -94,6 +102,26 @@ function finalScore(cbInning, numInnings) {
   return final;
 }
 console.log(finalScore(inning, 9));
+
+
+// **********  Brit's answer  ************************
+// function finalScore(inningCB, inningsNum) {
+//   let homeScore = 0;
+//   let awayScore = 0;
+//   for (let i = 0; i < inningsNum; i++) {
+//     homeScore = homeScore + inningCB();
+//     awayScore = awayScore + inningCB();
+//   }
+//   return {
+//     Home: homeScore,
+//     Away: awayScore
+//   }
+// }
+// console.log('Task 3:', finalScore(inning,9));
+
+
+
+
 
 /* Task 4: 
 
@@ -131,3 +159,34 @@ function scoreboard(cbScore, cbinning, numInnings) {
   }
 }
 scoreboard(finalScore, inning, 10);
+
+// *********  Brit's Answer  ********************
+// function getInningScore(inningCB) {
+//   return {
+//     Home: inningCB(),
+//     Away: inningCB()
+//   }
+// }
+
+// function scoreboard(inningScoreCb, inningCB, inningsNum) {
+//   const scoreByInning = [];
+
+//   let homeScore = 0;
+//   let awayScore = 0;
+
+//   for (let i = 0; i < inningsNum; i++) {
+//     const currentInning = inningScoreCb(inningCB);
+//     homeScore = homeScore + currentInning.Home;
+//     awayScore = awayScore + currentInning.Away;
+//     scoreByInning.push(`Inning ${i + 1}: Away: ${currentInning.Away} - Home: ${currentInning.Home}`)
+//   }
+
+//   if (homeScore === awayScore) {
+//     scoreByInning.push(`you will need to play another inning`);
+//   } else {
+//     scoreByInning.push(`Final Score: Away: ${awayScore} - Home: ${homeScore}`);
+//   }
+//   return scoreByInning;
+// }
+
+// console.log(`Task 4`, scoreboard(getInningScore, inning, 9));
